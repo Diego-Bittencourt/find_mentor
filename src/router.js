@@ -14,7 +14,7 @@ const router = createRouter({
         { path: '/mentors/:id', component: MentorDetail, children: [
             { path: 'contact', component: ContactMentor }, // mentor/c1/contact
         ]},
-        { path: '/registetr', component: MentorRegistration },
+        { path: '/register', component: MentorRegistration },
         { path: '/requests', component: RequestReceived },
         { path: '/:notFound(.*)', component: NotFound }, //router to catch any invalid url.
         
