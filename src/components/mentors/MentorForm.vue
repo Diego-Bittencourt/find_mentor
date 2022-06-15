@@ -89,9 +89,9 @@ textarea {
 
 input:focus,
 textarea:focus {
-  background-color: #f0e6fd;
+  background-color: #b6a45694;
   outline: none;
-  border-color: #3d008d;
+  border-color: #b84b03;
 }
 
 input[type='checkbox'] {
@@ -101,7 +101,7 @@ input[type='checkbox'] {
 }
 
 input[type='checkbox']:focus {
-  outline: #3d008d solid 1px;
+  outline: #b84b03 solid 1px;
 }
 
 h3 {
@@ -110,11 +110,11 @@ h3 {
 }
 
 .invalid label {
-  color: red;
+  color: #333;
 }
 
 .invalid input,
 .invalid textarea {
-  border: 1px solid red;
+  border: 1px solid #333;
 }
 </style>
