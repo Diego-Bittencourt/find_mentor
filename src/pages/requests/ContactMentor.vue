@@ -35,6 +35,12 @@ export default {
         this.formIsValid = false;
         return;
       }
+      this.$store.dispatch('requests/ContactMentor', {
+        email: this.email,
+        message: this.message,
+        mentorId: this.$route.params.id
+      });
+      this.$router.replace('/mentors');
     },
   },
 };
