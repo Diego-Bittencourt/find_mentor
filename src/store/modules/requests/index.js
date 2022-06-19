@@ -8,9 +8,7 @@ export default {
     namespaced: true,
     state() {
         return {
-            requests: [
-                'DummyData for testing purposes'
-            ]
+            requests: []
         }
     },
     mutations: requestsMutations,
