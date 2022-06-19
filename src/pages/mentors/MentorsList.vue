@@ -1,81 +1,104 @@
 <template>
+  <base-dialog :show="!!error" title="An error ocurred" @close="handleError">
+    <!--The !! converts the value to a true boolean with same value, true of false.  -->
+    <p>
+      {{ error }}
+    </p>
+  </base-dialog>
   <section>
     <mentor-filter @change-filter="setFilter"></mentor-filter>
   </section>
-  
+
   <section>
     <base-card>
-    <div class="controls">
+      <div class="controls">
         <base-button mode="outline" @click="loadMentors">Refresh</base-button>
-        <base-button link v-if="!isMentor" to="/register">Register as a Mentor</base-button>
-    </div>
-
-    <ul v-if="hasMentors">
-      <mentor-item v-for="mentor in filteredMentors"
-      :key="mentor.id"
-      :id="mentor.id"
-      :first-name="mentor.firstName"
-      :last-name="mentor.lastName"
-      :rate="mentor.hourlyRate"
-      :areas="mentor.areas" ></mentor-item>
-    </ul>
-    <h3 v-else>No Mentors Found.</h3>
+        <base-button link v-if="!isMentor && !isLoading" to="/register"
+          >Register as a Mentor</base-button
+        >
+      </div>
+      <div v-if="isLoading">
+        <base-spinner></base-spinner>
+      </div>
+      <ul v-else-if="hasMentors">
+        <mentor-item
+          v-for="mentor in filteredMentors"
+          :key="mentor.id"
+          :id="mentor.id"
+          :first-name="mentor.firstName"
+          :last-name="mentor.lastName"
+          :rate="mentor.hourlyRate"
+          :areas="mentor.areas"
+        ></mentor-item>
+      </ul>
+      <h3 v-else>No Mentors Found.</h3>
     </base-card>
   </section>
 </template>
 
 <script>
-import MentorItem from '../../components/mentors/MentorItem.vue'; 
+import MentorItem from '../../components/mentors/MentorItem.vue';
 import MentorFilter from '../../components/mentors/MentorFilter.vue';
 
 export default {
   components: {
     MentorItem,
-    MentorFilter
+    MentorFilter,
   },
-    computed: {
-      isMentor() {
-            return this.$store.getters['mentors/isMentor'];
-        },
-        filteredMentors() {
-            const mentors = this.$store.getters['mentors/mentors'];
-            return mentors.filter(mentor => {
-              if (this.activeFilters.frontend && mentor.areas.includes('frontend')) {
-                return true;
-              }
-              if (this.activeFilters.backend && mentor.areas.includes('backend')) {
-                return true;
-              }
-              if (this.activeFilters.career && mentor.areas.includes('career')) {
-                return true;
-              }
-              return false;
-            });
-        },
-        hasMentors() {
-          return this.$store.getters['mentors/hasMentors'];
+  computed: {
+    isMentor() {
+      return this.$store.getters['mentors/isMentor'];
+    },
+    filteredMentors() {
+      const mentors = this.$store.getters['mentors/mentors'];
+      return mentors.filter((mentor) => {
+        if (this.activeFilters.frontend && mentor.areas.includes('frontend')) {
+          return true;
         }
-    },
-    data() {
-      return {
-        activeFilters: {
-          frontend: true,
-          backend: true,
-          career: true
+        if (this.activeFilters.backend && mentor.areas.includes('backend')) {
+          return true;
         }
-      }
+        if (this.activeFilters.career && mentor.areas.includes('career')) {
+          return true;
+        }
+        return false;
+      });
     },
-    created() {
-      this.loadMentors();
+    hasMentors() {
+      return !this.isLoading && this.$store.getters['mentors/hasMentors'];
     },
-    methods: {
-      setFilter(updatedFilters) {
-        this.activeFilters = updatedFilters;
+  },
+  data() {
+    return {
+      isLoading: false,
+      error: null,
+      activeFilters: {
+        frontend: true,
+        backend: true,
+        career: true,
       },
-      loadMentors() {
-        this.$store.dispatch('mentors/loadMentors');
+    };
+  },
+  created() {
+    this.loadMentors();
+  },
+  methods: {
+    setFilter(updatedFilters) {
+      this.activeFilters = updatedFilters;
+    },
+    async loadMentors() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch('mentors/loadMentors');
+      } catch (error) {
+        this.error = error.message || 'Something went wrong';
       }
+      this.isLoading = false;
+    },
+    handleError () {
+      this.error = null
     }
+  },
 };
 </script>
 
@@ -89,4 +112,5 @@ ul {
 .controls {
   display: flex;
   justify-content: space-between;
-}</style>
+}
+</style>
