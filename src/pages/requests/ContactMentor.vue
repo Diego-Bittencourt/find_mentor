@@ -35,7 +35,7 @@ export default {
         this.formIsValid = false;
         return;
       }
-      this.$store.dispatch('requests/ContactMentor', {
+      this.$store.dispatch('requests/addRequest', {
         email: this.email,
         message: this.message,
         mentorId: this.$route.params.id
