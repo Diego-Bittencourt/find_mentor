@@ -1,8 +1,11 @@
 export default {
-    receivedRequests(state) {
-        return state.requests;
+    receivedRequests(state, getters, rootState, rootGetters) {
+        console.log(getters, rootState)
+        const currentmentorId = rootGetters.userId;
+        return state.requests.filter(request => request.mentorId === currentmentorId);
     },
-    hasRequests(state) {
-        return state.requests && state.requests.length > 0;
+    hasRequests(state, getters) {
+        console.log(state);
+        return getters.receivedRequests && getters.receivedRequests.length > 0;
     }
 };
