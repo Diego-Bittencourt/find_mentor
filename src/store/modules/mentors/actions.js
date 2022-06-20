@@ -28,7 +28,12 @@ export default {
       id: userId,
     });
   },
-  async loadMentors(context) {
+  async loadMentors(context, payload) {
+
+    if (!payload.forceRefresh && !context.getters.shouldUpdate) {
+      return;
+    }
+
     const response = await fetch(
       `https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/mentors.json`
     );
@@ -53,5 +58,6 @@ export default {
       mentors.push(mentor);
     }
     context.commit('setMentors', mentors);
+    context.commit('setFetchTimeStamp');
   },
 };

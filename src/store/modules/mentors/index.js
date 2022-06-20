@@ -6,6 +6,7 @@ export default {
   namespaced: true,
   state() {
     return {
+      lastFecth: null,
       mentors: [
         {
           id: 'm1',

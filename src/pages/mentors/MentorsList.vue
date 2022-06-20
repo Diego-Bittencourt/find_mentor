@@ -12,7 +12,7 @@
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline" @click="loadMentors">Refresh</base-button>
+        <base-button mode="outline" @click="loadMentors(true)">Refresh</base-button>
         <base-button link v-if="!isMentor && !isLoading" to="/register"
           >Register as a Mentor</base-button
         >
@@ -86,10 +86,10 @@ export default {
     setFilter(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
-    async loadMentors() {
+    async loadMentors(refresh = false) {
       this.isLoading = true;
       try {
-        await this.$store.dispatch('mentors/loadMentors');
+        await this.$store.dispatch('mentors/loadMentors', {forceRefresh: refresh});
       } catch (error) {
         this.error = error.message || 'Something went wrong';
       }
