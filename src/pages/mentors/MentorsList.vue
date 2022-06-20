@@ -1,4 +1,5 @@
 <template>
+<div>
   <base-dialog :show="!!error" title="An error ocurred" @close="handleError">
     <!--The !! converts the value to a true boolean with same value, true of false.  -->
     <p>
@@ -34,6 +35,7 @@
       <h3 v-else>No Mentors Found.</h3>
     </base-card>
   </section>
+  </div>
 </template>
 
 <script>
