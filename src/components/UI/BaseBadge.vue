@@ -66,11 +66,6 @@ export default {
   color: #ddd;
 }
 
-.pokemon {
-  background-color: rgb(241, 7, 7);
-  color: #ddd;
-}
-
 .hooks {
   background-color: rgb(177, 175, 175);
   color: #252525;

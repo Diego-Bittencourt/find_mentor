@@ -11,7 +11,7 @@ export default {
           gitHubLink: 'www.github.com',
           projectTitle: 'Dummy project',
           projectDescription: 'This is just dummy data',
-          projectTags: ['vue', 'component', 'pokemon'],
+          projectTags: ['vue', 'component'],
         },
         {
           id: 'c5',
