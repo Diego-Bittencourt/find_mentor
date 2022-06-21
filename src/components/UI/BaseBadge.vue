@@ -10,7 +10,8 @@ export default {
     computed: {
         text() {
             return this.title.toUpperCase();
-        }
+        },
+        
     }
 }
 </script>
@@ -27,16 +28,51 @@ export default {
 
 .frontend {
   background-color: #b84b03;
-  color: white;
+  color: #ddd;
 }
 
 .backend {
   background-color: #b88e03;
-  color: white;
+  color: #ddd;
 }
 
 .career {
   background-color: #a6b803;
-  color: white;
+  color: #ddd;
+}
+
+.react {
+  background-color: #0324b8 ;
+  color: #ddd;
+}
+
+.vue {
+  background-color: #07cf61;
+  color: #ddd;
+}
+
+.javascript {
+  background-color: #ffe70a;
+  color: #ddd;
+}
+
+.PHP {
+  background-color: #5c5d5e;
+  color: #ddd;
+}
+
+.component {
+  background-color: #ae00da;
+  color: #ddd;
+}
+
+.pokemon {
+  background-color: rgb(241, 7, 7);
+  color: #ddd;
+}
+
+.hooks {
+  background-color: rgb(177, 175, 175);
+  color: #252525;
 }
 </style>

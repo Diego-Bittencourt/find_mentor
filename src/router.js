@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import MentorDetail from './pages/mentors/MentorDetail.vue';
 import MentorRegistration from './pages/mentors/MentorRegistration.vue';
 import MentorsList from './pages/mentors/MentorsList.vue';
+import BuddiesList from './pages/buddies/BuddiesList.vue';
 import ContactMentor from './pages/requests/ContactMentor.vue';
 import RequestReceived from './pages/requests/RequestReceived.vue';
 import NotFound from './pages/NotFound.vue';
@@ -10,6 +11,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', redirect: '/mentors ' }, //initial page, redirect to the mentors list
+    { path: '/buddies', component: BuddiesList },
     { path: '/mentors', component: MentorsList },
     {
       path: '/mentors/:id',
