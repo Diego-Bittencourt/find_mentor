@@ -1,14 +1,17 @@
 <template>
   <li>
     <a :href="gitlink" target="_blank"><h2>{{ title }}</h2></a>
+    <base-button mode="outline" @click="toggleDetails">Show More</base-button>
     <h4>
         {{ buddyname }}
     </h4>
+    
     <base-badge v-for="tag in tags"
     :key="tag"
     :type="tag"
     :title="tag">
     </base-badge>
+    <p v-if="detailsIsVisible">{{ description }}</p>
 
     
   </li>
@@ -17,6 +20,16 @@
 <script>
 export default {
   props: ['id', 'buddyname', 'gitlink', 'title', 'description', 'tags'],
+  data () {
+    return {
+      detailsIsVisible: false
+    }
+  },
+  methods: {
+    toggleDetails () {
+      this.detailsIsVisible = !this.detailsIsVisible;
+    }
+  }
   
 }
 </script>
