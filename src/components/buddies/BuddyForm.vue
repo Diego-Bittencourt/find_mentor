@@ -142,6 +142,10 @@ textarea {
   font: inherit;
 }
 
+textarea {
+  resize: vertical;
+}
+
 input:focus,
 textarea:focus {
   background-color: #b6a45694;
