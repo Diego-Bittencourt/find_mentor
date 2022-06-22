@@ -1,6 +1,14 @@
 <template>
   <div>
     <section>
+      <base-card>
+      <base-button @click="toggleBuddyForm">Create Code Buddy Request</base-button>
+      <buddy-form v-if="isBuddyFormVisible">
+        
+        </buddy-form>
+      </base-card>
+    </section>
+    <section>
       <buddy-filter @change-filter="setFilters"></buddy-filter>
     </section>
     <base-card>
@@ -28,13 +36,15 @@
 <script>
 import BuddyItem from '../../components/buddies/BuddyItem.vue';
 import BuddyFilter from '../../components/buddies/BuddyFilter.vue';
+import BuddyForm from '../../components/buddies/BuddyForm.vue';
 
 export default {
   components: {
     BuddyItem,
     BuddyFilter,
+    BuddyForm
   },
-  data () {
+  data() {
     return {
       activeFilters: {
         vue: true,
@@ -43,8 +53,9 @@ export default {
         PHP: true,
         hooks: true,
         javascript: true,
-      }
-    }
+      },
+      isBuddyFormVisible: false
+    };
   },
   computed: {
     loadBuddiesRequests() {
@@ -56,7 +67,10 @@ export default {
         if (this.activeFilters.react && buddy.projectTags.includes('react')) {
           return true;
         }
-        if (this.activeFilters.component && buddy.projectTags.includes('component')) {
+        if (
+          this.activeFilters.component &&
+          buddy.projectTags.includes('component')
+        ) {
           return true;
         }
         if (this.activeFilters.PHP && buddy.projectTags.includes('PHP')) {
@@ -65,12 +79,14 @@ export default {
         if (this.activeFilters.hooks && buddy.projectTags.includes('hooks')) {
           return true;
         }
-        if (this.activeFilters.javascript && buddy.projectTags.includes('javascript')) {
+        if (
+          this.activeFilters.javascript &&
+          buddy.projectTags.includes('javascript')
+        ) {
           return true;
         }
         return false;
-      })
-      
+      });
     },
     hasBuddies() {
       return this.$store.getters['buddies/hasBuddies'];
@@ -78,10 +94,13 @@ export default {
   },
   methods: {
     setFilters(updatedFilters) {
-      console.log(updatedFilters)
+      console.log(updatedFilters);
       this.activeFilters = updatedFilters;
+    },
+    toggleBuddyForm () {
+      this.isBuddyFormVisible = !this.isBuddyFormVisible;
     }
-  }
+  },
 };
 </script>
 
