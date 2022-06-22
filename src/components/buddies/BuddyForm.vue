@@ -1,21 +1,21 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div class="form-control">
+    <div class="form-control" :class="{invalid: !projectTitle.isValid}">
       <label for="title">Project Title</label>
       <input type="text" id="title" v-model.trim="projectTitle.val" />
-      <p v-if="projectTitle.isValid">Please, enter a valid Title</p>
+      <p v-if="!projectTitle.isValid" class="errormessage">Please, enter a valid Title</p>
     </div>
-    <div class="form-control">
+    <div class="form-control" :class="{invalid: !gitlink.isValid}">
       <label for="gitlink">Repository Link</label>
       <input type="url" id="gitlink" v-model.trim="gitlink.val"/>
-      <p v-if="gitlink.isValid">Please, enter a valid url</p>
+      <p v-if="!gitlink.isValid" class="errormessage">Please, enter a valid url</p>
     </div>
-    <div class="form-control">
+    <div class="form-control" :class="{invalid: !projectTitle.isValid}">
       <label for="title">Project Description</label>
       <textarea rows="5" id="description" v-model.trim="description.val"></textarea>
-      <p v-if="description.isValid">Please, enter a valid description</p>
+      <p v-if="!description.isValid" class="errormessage">Please, enter a valid description</p>
     </div>
-    <div class="form-control">
+    <div class="form-control" :class="{invalid: !techUsed.isValid}">
       <h3>Tecnologies used</h3>
       <div>
         <input type="checkbox" id="react" value="react" v-model="techUsed.val" />
@@ -41,9 +41,10 @@
         <input type="checkbox" id="javascript" value="javascript" v-model="techUsed.val"/>
         <label for="javascript">VanillaJavascript</label>
       </div>
-      <!-- <p v-if="techUsed.isValid">Please, select at least one technology</p> -->
+      <p v-if="!techUsed.isValid" class="errormessage">Please, select at least one technology</p>
     </div>
     <base-button>Create Buddy Request</base-button>
+    <p v-if="!formIsValid" class="errormessage">Please, check if all data is correct.</p>
   </form>
 </template>
 
@@ -71,8 +72,33 @@ export default {
     };
   },
   methods: {
+    validateForm() {
+      this.formIsValid = true;
+
+      if (this.projectTitle.val === '') {
+        this.projectTitle.isValid = false;
+        this.formIsValid = false;
+      }
+
+      if (this.gitlink.val === '') {
+        this.gitlink.isValid = false;
+        this.formIsValid = false;
+      }
+
+      if (this.description.val === '') {
+        this.description.isValid = false;
+        this.formIsValid = false;
+      }
+
+      if (this.techUsed.val.length < 1) {
+        this.techUsed.isValid = false;
+        this.formIsValid = false;
+      }
+    },
     submitForm() {
       
+      this.validateForm();
+
       if (!this.formIsValid) {
         return false;
       }
@@ -88,6 +114,7 @@ export default {
     }
   }
 };
+
 </script>
 
 <style scoped>
@@ -137,7 +164,8 @@ h3 {
   font-size: 1rem;
 }
 
-.invalid label {
+.invalid label,
+.invalid h3 {
   color: rgb(243, 16, 16);
 }
 
