@@ -2,43 +2,43 @@
   <form @submit.prevent="submitForm">
     <div class="form-control" :class="{invalid: !projectTitle.isValid}">
       <label for="title">Project Title</label>
-      <input type="text" id="title" v-model.trim="projectTitle.val" />
+      <input type="text" id="title" v-model.trim="projectTitle.val" @input="clearValidity('projectTitle')" />
       <p v-if="!projectTitle.isValid" class="errormessage">Please, enter a valid Title</p>
     </div>
     <div class="form-control" :class="{invalid: !gitlink.isValid}">
       <label for="gitlink">Repository Link</label>
-      <input type="url" id="gitlink" v-model.trim="gitlink.val"/>
+      <input type="url" id="gitlink" v-model.trim="gitlink.val" @input="clearValidity('gitlink')"/>
       <p v-if="!gitlink.isValid" class="errormessage">Please, enter a valid url</p>
     </div>
-    <div class="form-control" :class="{invalid: !projectTitle.isValid}">
+    <div class="form-control" :class="{invalid: !description.isValid}">
       <label for="title">Project Description</label>
-      <textarea rows="5" id="description" v-model.trim="description.val"></textarea>
+      <textarea rows="5" id="description" v-model.trim="description.val" @input="clearValidity('description')"></textarea>
       <p v-if="!description.isValid" class="errormessage">Please, enter a valid description</p>
     </div>
     <div class="form-control" :class="{invalid: !techUsed.isValid}">
       <h3>Tecnologies used</h3>
       <div>
-        <input type="checkbox" id="react" value="react" v-model="techUsed.val" />
+        <input type="checkbox" id="react" value="react" v-model="techUsed.val" @change="clearValidity('techUsed')"/>
         <label for="react">React</label>
       </div>
       <div>
-        <input type="checkbox" id="vue" value="vue" v-model="techUsed.val"/>
+        <input type="checkbox" id="vue" value="vue" v-model="techUsed.val" @change="clearValidity('techUsed')"/>
         <label for="vue">Vue</label>
       </div>
       <div>
-        <input type="checkbox" id="components" value="components" v-model="techUsed.val"/>
+        <input type="checkbox" id="components" value="components" v-model="techUsed.val" @change="clearValidity('techUsed')"/>
         <label for="components">Components</label>
       </div>
       <div>
-        <input type="checkbox" id="hooks" value="hooks" v-model="techUsed.val"/>
+        <input type="checkbox" id="hooks" value="hooks" v-model="techUsed.val" @change="clearValidity('techUsed')"/>
         <label for="hooks">Hooks</label>
       </div>
       <div>
-        <input type="checkbox" id="PHP" value="PHP" v-model="techUsed.val"/>
+        <input type="checkbox" id="PHP" value="PHP" v-model="techUsed.val" @change="clearValidity('techUsed')"/>
         <label for="PHP">PHP</label>
       </div>
       <div>
-        <input type="checkbox" id="javascript" value="javascript" v-model="techUsed.val"/>
+        <input type="checkbox" id="javascript" value="javascript" v-model="techUsed.val" @change="clearValidity('techUsed')"/>
         <label for="javascript">VanillaJavascript</label>
       </div>
       <p v-if="!techUsed.isValid" class="errormessage">Please, select at least one technology</p>
@@ -50,6 +50,7 @@
 
 <script>
 export default {
+  emits: ['save-project'],
   data() {
     return {
       projectTitle: {
@@ -72,6 +73,10 @@ export default {
     };
   },
   methods: {
+      clearValidity(input) {
+      this[input].isValid = true;
+      this.formIsValid = true;
+    },
     validateForm() {
       this.formIsValid = true;
 
@@ -106,10 +111,10 @@ export default {
       const formData = {
         title: this.projectTitle.val,
         link: this.gitlink.val,
-        description: this.description,
+        description: this.description.val,
         techUsed: this.techUsed.val
       }
-      console.log(formData);
+      // console.log(formData);
       this.$emit('save-project', formData);
     }
   }

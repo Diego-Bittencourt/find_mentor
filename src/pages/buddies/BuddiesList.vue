@@ -2,12 +2,16 @@
   <div>
     <section>
       <base-card>
-      <base-button @click="toggleBuddyForm">Create Code Buddy Request</base-button>
-      <buddy-form v-if="isBuddyFormVisible">
-        
+        <base-button @click="toggleBuddyForm"
+          >Create Code Buddy Request</base-button
+        >
+        <buddy-form v-if="isBuddyFormVisible" @save-project="registerProject">
         </buddy-form>
       </base-card>
     </section>
+    <section> 
+      <button @click="loadBuddies"></button>
+      </section>
     <section>
       <buddy-filter @change-filter="setFilters"></buddy-filter>
     </section>
@@ -42,7 +46,7 @@ export default {
   components: {
     BuddyItem,
     BuddyFilter,
-    BuddyForm
+    BuddyForm,
   },
   data() {
     return {
@@ -54,7 +58,7 @@ export default {
         hooks: true,
         javascript: true,
       },
-      isBuddyFormVisible: false
+      isBuddyFormVisible: false,
     };
   },
   computed: {
@@ -85,6 +89,7 @@ export default {
         ) {
           return true;
         }
+        console.log('its returning false');
         return false;
       });
     },
@@ -92,14 +97,24 @@ export default {
       return this.$store.getters['buddies/hasBuddies'];
     },
   },
+  created() {
+    this.$store.dispatch('buddies/loadBuddies');
+  },
   methods: {
+    loadBuddies() {
+      this.$store.dispatch('buddies/loadBuddies');
+    },
     setFilters(updatedFilters) {
       console.log(updatedFilters);
       this.activeFilters = updatedFilters;
     },
-    toggleBuddyForm () {
+    toggleBuddyForm() {
       this.isBuddyFormVisible = !this.isBuddyFormVisible;
-    }
+    },
+    registerProject(formData) {
+      this.$store.dispatch('buddies/registerProject', formData);
+      this.toggleBuddyForm();
+    },
   },
 };
 </script>
