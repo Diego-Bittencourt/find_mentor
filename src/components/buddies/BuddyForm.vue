@@ -26,12 +26,12 @@
         <label for="vue">Vue</label>
       </div>
       <div>
-        <input type="checkbox" id="components" value="components" v-model="techUsed.val" @change="clearValidity('techUsed')"/>
-        <label for="components">Components</label>
+        <input type="checkbox" id="python" value="python" v-model="techUsed.val" @change="clearValidity('techUsed')"/>
+        <label for="python">Python</label>
       </div>
       <div>
-        <input type="checkbox" id="hooks" value="hooks" v-model="techUsed.val" @change="clearValidity('techUsed')"/>
-        <label for="hooks">Hooks</label>
+        <input type="checkbox" id="tailwind" value="tailwind" v-model="techUsed.val" @change="clearValidity('techUsed')"/>
+        <label for="tailwind">Tailwind</label>
       </div>
       <div>
         <input type="checkbox" id="PHP" value="PHP" v-model="techUsed.val" @change="clearValidity('techUsed')"/>

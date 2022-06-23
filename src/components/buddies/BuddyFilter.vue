@@ -10,12 +10,12 @@
       <label for="react">React</label>
     </div>
     <div class="filter-option">
-      <input type="checkbox" id="component" checked @change="setFilter" />
-      <label for="component">Components</label>
+      <input type="checkbox" id="python" checked @change="setFilter" />
+      <label for="python">Python</label>
     </div>
     <div class="filter-option">
-      <input type="checkbox" id="hooks" checked @change="setFilter" />
-      <label for="hooks">Hooks</label>
+      <input type="checkbox" id="tailwind" checked @change="setFilter" />
+      <label for="tailwind">Tailwind</label>
     </div>
     <div class="filter-option">
       <input type="checkbox" id="javascript" checked @change="setFilter" />
@@ -35,9 +35,9 @@ export default {
       filters: {
         vue: true,
         react: true,
-        component: true,
+        python: true,
         PHP: true,
-        hooks: true,
+        tailwind: true,
         javascript: true,
       },
     };

@@ -53,9 +53,9 @@ export default {
       activeFilters: {
         vue: true,
         react: true,
-        component: true,
+        python: true,
         PHP: true,
-        hooks: true,
+        tailwind: true,
         javascript: true,
       },
       isBuddyFormVisible: false,
@@ -71,25 +71,18 @@ export default {
         if (this.activeFilters.react && buddy.projectTags.includes('react')) {
           return true;
         }
-        if (
-          this.activeFilters.component &&
-          buddy.projectTags.includes('component')
-        ) {
+        if (this.activeFilters.python && buddy.projectTags.includes('python')) {
           return true;
         }
         if (this.activeFilters.PHP && buddy.projectTags.includes('PHP')) {
           return true;
         }
-        if (this.activeFilters.hooks && buddy.projectTags.includes('hooks')) {
+        if (this.activeFilters.tailwind && buddy.projectTags.includes('tailwind')) {
           return true;
         }
-        if (
-          this.activeFilters.javascript &&
-          buddy.projectTags.includes('javascript')
-        ) {
+        if (this.activeFilters.javascript && buddy.projectTags.includes('javascript')) {
           return true;
         }
-        console.log('its returning false');
         return false;
       });
     },

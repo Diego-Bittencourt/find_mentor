@@ -13,7 +13,7 @@ export default {
           gitHubLink: 'www.github.com',
           projectTitle: 'Dummy project',
           projectDescription: 'This is just dummy data',
-          projectTags: ['vue', 'component'],
+          projectTags: ['vue', 'python'],
         },
         {
           id: 'c5',
@@ -21,7 +21,7 @@ export default {
           gitHubLink: 'www.github.com/test',
           projectTitle: 'Doing something with PHP',
           projectDescription: 'This is another dummy data',
-          projectTags: ['react', 'hooks', 'PHP']
+          projectTags: ['react', 'tailwind', 'PHP']
         },
         {
           id: 'z3',

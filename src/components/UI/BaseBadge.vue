@@ -61,12 +61,12 @@ export default {
   color: #ddd;
 }
 
-.component {
+.python {
   background-color: #ae00da;
   color: #ddd;
 }
 
-.hooks {
+.tailwind {
   background-color: rgb(177, 175, 175);
   color: #252525;
 }
