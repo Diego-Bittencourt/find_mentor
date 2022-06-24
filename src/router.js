@@ -10,7 +10,7 @@ import NotFound from './pages/NotFound.vue';
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', redirect: '/mentors ' }, //initial page, redirect to the mentors list
+    { path: '/', redirect: '/mentors' }, //initial page, redirect to the mentors list
     { path: '/buddies', component: BuddiesList },
     { path: '/mentors', component: MentorsList },
     {

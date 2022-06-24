@@ -10,7 +10,7 @@
       </base-card>
     </section>
     <section> 
-      <button @click="loadBuddies"></button>
+      <button @click="loadBuddies">Refresh list</button>
       </section>
     <section>
       <buddy-filter @change-filter="setFilters"></buddy-filter>
@@ -98,7 +98,6 @@ export default {
       this.$store.dispatch('buddies/loadBuddies');
     },
     setFilters(updatedFilters) {
-      console.log(updatedFilters);
       this.activeFilters = updatedFilters;
     },
     toggleBuddyForm() {
