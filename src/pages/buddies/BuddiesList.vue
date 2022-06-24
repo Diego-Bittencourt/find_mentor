@@ -25,7 +25,7 @@
             v-for="buddy in loadBuddiesRequests"
             :key="buddy.id"
             :id="buddy.id"
-            :buddyname="buddy.buddyName"
+            :buddyname="buddy.name"
             :title="buddy.projectTitle"
             :gitlink="buddy.gitHubLink"
             :tags="buddy.projectTags"
