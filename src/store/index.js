@@ -12,12 +12,16 @@ const store = createStore({
   state() {
     return {
       userId: 'y3',
+      userName: 'Diego'
     };
   },
   getters: {
     userId(state) {
       return state.userId;
     },
+    getUserName(state) {
+      return state.userName;
+    }
   },
 });
 
