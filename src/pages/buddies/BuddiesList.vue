@@ -5,13 +5,13 @@
         <base-button @click="toggleBuddyForm"
           >Create Code Buddy Request</base-button
         >
-        <buddy-form v-if="isBuddyFormVisible" @save-project="registerProject">
-        </buddy-form>
+        <buddy-registration v-if="isBuddyFormVisible" @buddy-form-off="toggleBuddyForm">
+        </buddy-registration>
       </base-card>
     </section>
-    <section> 
+    <section>
       <button @click="loadBuddies">Refresh list</button>
-      </section>
+    </section>
     <section>
       <buddy-filter @change-filter="setFilters"></buddy-filter>
     </section>
@@ -40,13 +40,15 @@
 <script>
 import BuddyItem from '../../components/buddies/BuddyItem.vue';
 import BuddyFilter from '../../components/buddies/BuddyFilter.vue';
-import BuddyForm from '../../components/buddies/BuddyForm.vue';
+// import BuddyForm from '../../components/buddies/BuddyForm.vue';
+import BuddyRegistration from '../../pages/buddies/BuddyRegistradion.vue';
 
 export default {
   components: {
     BuddyItem,
     BuddyFilter,
-    BuddyForm,
+    // BuddyForm,
+    BuddyRegistration
   },
   data() {
     return {
@@ -64,7 +66,8 @@ export default {
   computed: {
     loadBuddiesRequests() {
       const buddies = this.$store.getters['buddies/loadBuddies'];
-      return buddies.filter((buddy) => {
+      
+      let filteredBuddies = buddies.filter((buddy) => {
         if (this.activeFilters.vue && buddy.projectTags.includes('vue')) {
           return true;
         }
@@ -85,6 +88,8 @@ export default {
         }
         return false;
       });
+      console.log(filteredBuddies)
+      return filteredBuddies
     },
     hasBuddies() {
       return this.$store.getters['buddies/hasBuddies'];
