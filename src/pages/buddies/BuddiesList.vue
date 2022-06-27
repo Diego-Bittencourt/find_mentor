@@ -66,41 +66,45 @@ export default {
   computed: {
     loadBuddiesRequests() {
       const buddies = this.$store.getters['buddies/loadBuddies'];
-      
-      let filteredBuddies = buddies.filter((buddy) => {
-        if (this.activeFilters.vue && buddy.projectTags.includes('vue')) {
+      return buddies.filter(() => {
+        if (this.activeFilters.vue) {
           return true;
         }
-        if (this.activeFilters.react && buddy.projectTags.includes('react')) {
+        if (this.activeFilters.react) {
           return true;
         }
-        if (this.activeFilters.python && buddy.projectTags.includes('python')) {
+        if (this.activeFilters.python) {
           return true;
         }
-        if (this.activeFilters.PHP && buddy.projectTags.includes('PHP')) {
+        if (this.activeFilters.PHP) {
           return true;
         }
-        if (this.activeFilters.tailwind && buddy.projectTags.includes('tailwind')) {
+        if (this.activeFilters.tailwind) {
           return true;
         }
-        if (this.activeFilters.javascript && buddy.projectTags.includes('javascript')) {
+        if (this.activeFilters.javascript) {
           return true;
         }
         return false;
       });
-      console.log(filteredBuddies)
-      return filteredBuddies
     },
     hasBuddies() {
       return this.$store.getters['buddies/hasBuddies'];
     },
   },
   created() {
-    this.$store.dispatch('buddies/loadBuddies');
+    this.loadBuddies;
   },
   methods: {
-    loadBuddies() {
-      this.$store.dispatch('buddies/loadBuddies');
+    async loadBuddies() {
+      try {
+        await this.$store.dispatch('buddies/loadBuddies');
+      } catch (error) {
+        this.error = error.message || 'Something went wrong';
+      }
+    },
+    handleError () {
+      this.error = null
     },
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;

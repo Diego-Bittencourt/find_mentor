@@ -36,11 +36,11 @@ export default {
 
     if (!response.ok) {
       const error = new Error(
-        response.message || 'Failed to load data. Try again later.'
+        responseData.message || 'Failed to load data. Try again later.'
       );
       throw error;
     }
-
+    
     const buddies = [];
 
     for (const key in responseData) {
