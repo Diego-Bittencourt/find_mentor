@@ -41,62 +41,62 @@
       <div>
         <input
           type="checkbox"
-          id="react"
+          id="reacttag"
           value="react"
           v-model="techUsed.val"
           @change="clearValidity('techUsed')"
         />
-        <label for="react">React</label>
+        <label for="reacttag">React</label>
       </div>
       <div>
         <input
           type="checkbox"
-          id="vue"
+          id="vuetag"
           value="vue"
           v-model="techUsed.val"
           @change="clearValidity('techUsed')"
         />
-        <label for="vue">Vue</label>
+        <label for="vuetag">Vue</label>
       </div>
       <div>
         <input
           type="checkbox"
-          id="python"
+          id="pythontag"
           value="python"
           v-model="techUsed.val"
           @change="clearValidity('techUsed')"
         />
-        <label for="python">Python</label>
+        <label for="pythontag">Python</label>
       </div>
       <div>
         <input
           type="checkbox"
-          id="tailwind"
+          id="tailwindtag"
           value="tailwind"
           v-model="techUsed.val"
           @change="clearValidity('techUsed')"
         />
-        <label for="tailwind">Tailwind</label>
+        <label for="tailwindtag">Tailwind</label>
       </div>
       <div>
         <input
           type="checkbox"
-          id="PHP"
+          id="PHPtag"
           value="PHP"
           v-model="techUsed.val"
           @change="clearValidity('techUsed')"
         />
-        <label for="PHP">PHP</label>
+        <label for="PHPtag">PHP</label>
       </div>
       <div>
         <input
           type="checkbox"
-          id="javascript"
+          id="javascripttag"
           value="javascript"
           v-model="techUsed.val"
           @change="clearValidity('techUsed')"
         />
-        <label for="javascript">VanillaJavascript</label>
+        <label for="javascripttag">VanillaJavascript</label>
       </div>
       <p v-if="!techUsed.isValid" class="errormessage">
         Please, select at least one technology
