@@ -53,7 +53,6 @@ export default {
         projectTags: responseData[key].techUsed,
       };
       buddies.push(buddy);
-
       context.commit('loadBuddies', buddies);
     }
   },

@@ -11,14 +11,14 @@
 import BuddyForm from '../../components/buddies/BuddyForm.vue';
 
 export default {
-    emits:['buddy-form-off'],
+    emits:['register-buddy'],
   components: {
     BuddyForm,
   },
   methods: {
     registerProject(formData) {
       this.$store.dispatch('buddies/registerProject', formData);
-      this.$emit('buddy-form-off')
+      this.$emit('register-buddy')
     //   this.toggleBuddyForm();
     },
   },

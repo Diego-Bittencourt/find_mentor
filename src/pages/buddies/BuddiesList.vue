@@ -5,22 +5,24 @@
         <base-button @click="toggleBuddyForm"
           >Create Code Buddy Request</base-button
         >
-        <buddy-registration v-if="isBuddyFormVisible" @buddy-form-off="toggleBuddyForm">
+        <buddy-registration v-if="isBuddyFormVisible" @register-buddy="buddyRegistered">
         </buddy-registration>
       </base-card>
     </section>
     <section>
       <button @click="loadBuddies">Refresh list</button>
+      <p>{{ theListOfBUddies }}</p>
     </section>
     <section>
       <buddy-filter @change-filter="setFilters"></buddy-filter>
     </section>
     <base-card>
       <section>
-        <h3 v-if="hasBuddies">
-          There are no Code Buddies requests. Try creating one.
-        </h3>
-        <ul>
+        
+        <div v-if="isLoading">
+        <base-spinner></base-spinner>
+      </div>
+        <ul v-else-if="hasBuddies">
           <buddy-item
             v-for="buddy in loadBuddiesRequests"
             :key="buddy.id"
@@ -32,6 +34,9 @@
             :description="buddy.projectDescription"
           ></buddy-item>
         </ul>
+        <h3 v-else>
+          There are no Code Buddies requests. Try creating one.
+        </h3>
       </section>
     </base-card>
   </div>
@@ -61,50 +66,57 @@ export default {
         javascript: true,
       },
       isBuddyFormVisible: false,
+      isLoading: false
     };
   },
   computed: {
+    theListOfBUddies() {
+      return this.$store.getters['buddies/loadBuddies'];
+    },
     loadBuddiesRequests() {
       const buddies = this.$store.getters['buddies/loadBuddies'];
-      return buddies.filter(() => {
-        if (this.activeFilters.vue) {
+      return buddies.filter((buddy) => {
+        if (this.activeFilters.vue && buddy.projectTags.includes('vue')) {
           return true;
         }
-        if (this.activeFilters.react) {
+        if (this.activeFilters.react && buddy.projectTags.includes('react')) {
           return true;
         }
-        if (this.activeFilters.python) {
+        if (this.activeFilters.python && buddy.projectTags.includes('python')) {
           return true;
         }
-        if (this.activeFilters.PHP) {
+        if (this.activeFilters.PHP && buddy.projectTags.includes('PHP')) {
           return true;
         }
-        if (this.activeFilters.tailwind) {
+        if (this.activeFilters.tailwind && buddy.projectTags.includes('tailwind')) {
           return true;
         }
-        if (this.activeFilters.javascript) {
+        if (this.activeFilters.javascript && buddy.projectTags.includes('javascript')) {
           return true;
         }
         return false;
       });
     },
     hasBuddies() {
-      return this.$store.getters['buddies/hasBuddies'];
+      return !this.isLoading && this.$store.getters['buddies/hasBuddies'];
     },
   },
   created() {
-    this.loadBuddies;
+    this.loadBuddies();
   },
   methods: {
+    buddyRegistered() {
+      this.loadBuddies();
+      this.isBuddyFormVisible = false;
+    },
     async loadBuddies() {
+      this.isLoading = true;
       try {
         await this.$store.dispatch('buddies/loadBuddies');
       } catch (error) {
         this.error = error.message || 'Something went wrong';
       }
-    },
-    handleError () {
-      this.error = null
+      this.isLoading = false;
     },
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;

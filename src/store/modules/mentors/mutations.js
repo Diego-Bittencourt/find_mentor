@@ -3,6 +3,7 @@ export default {
         state.mentors.push(payload);
     },
     setMentors(state, payload) {
+        console.log("chamada")
         state.mentors = payload;
     },
     setFetchTimeStamp(state) {

@@ -3,7 +3,7 @@ export default {
         return state.buddiesRequests;
     },
     hasBuddies (state) {
-        if (state.buddies && state.buddies.length > 0) {
+        if (state.buddiesRequests && state.buddiesRequests.length) {
             return true;
         } else {
             return false;
