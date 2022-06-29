@@ -68,6 +68,6 @@ button:active {
 .flat:active,
 .outline:hover,
 .outline:active {
-  background-color: #edd2ff;
+  background-color: #ffedd2;
 }
 </style>

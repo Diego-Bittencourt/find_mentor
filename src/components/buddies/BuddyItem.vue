@@ -1,9 +1,13 @@
 <template>
   <li>
+    <div class="titlebanner">
     <a :href="gitlink" target="_blank"><h2>{{ title }}</h2></a>
-    <base-button mode="outline" @click="toggleDetails">Show More</base-button>
+    <base-button mode="flat" @click="toggleDetails" v-if="!detailsIsVisible">Show More</base-button>
+    <base-button mode="flat" @click="toggleDetails" v-else>Show Less</base-button>
+    </div>
+    
     <h4>
-        {{ buddyname }}
+        By {{ buddyname }}
     </h4>
     
     <base-badge v-for="tag in tags"
@@ -11,6 +15,8 @@
     :type="tag"
     :title="tag">
     </base-badge>
+    <br>
+    
     <p v-if="detailsIsVisible">{{ description }}</p>
 
     
@@ -54,5 +60,11 @@ a:active {
 
 p {
   margin: 0.5rem 0 0 0;
+}
+
+.titlebanner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

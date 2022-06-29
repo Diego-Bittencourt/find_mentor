@@ -9,16 +9,16 @@
         </buddy-registration>
       </base-card>
     </section>
-    <section>
-      <button @click="loadBuddies">Refresh list</button>
-      <p>{{ theListOfBUddies }}</p>
-    </section>
+    
     <section>
       <buddy-filter @change-filter="setFilters"></buddy-filter>
     </section>
     <base-card>
       <section>
-        
+        <section>
+      <base-button @click="loadBuddies">Refresh list</base-button>
+      
+    </section>
         <div v-if="isLoading">
         <base-spinner></base-spinner>
       </div>
@@ -34,6 +34,7 @@
             :description="buddy.projectDescription"
           ></buddy-item>
         </ul>
+        
         <h3 v-else>
           There are no Code Buddies requests. Try creating one.
         </h3>

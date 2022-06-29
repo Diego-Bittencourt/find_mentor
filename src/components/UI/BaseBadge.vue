@@ -47,13 +47,13 @@ export default {
 }
 
 .vue {
-  background-color: #07cf61;
-  color: #ddd;
+  background-color: #069c4a;
+  color: rgb(240, 239, 239);
 }
 
 .javascript {
   background-color: #ffe70a;
-  color: #ddd;
+  color: rgb(36, 35, 35);
 }
 
 .PHP {
