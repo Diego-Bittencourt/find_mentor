@@ -46,14 +46,12 @@
 <script>
 import BuddyItem from '../../components/buddies/BuddyItem.vue';
 import BuddyFilter from '../../components/buddies/BuddyFilter.vue';
-// import BuddyForm from '../../components/buddies/BuddyForm.vue';
 import BuddyRegistration from '../../pages/buddies/BuddyRegistradion.vue';
 
 export default {
   components: {
     BuddyItem,
     BuddyFilter,
-    // BuddyForm,
     BuddyRegistration
   },
   data() {

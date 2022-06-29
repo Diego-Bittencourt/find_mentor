@@ -8,7 +8,6 @@ export default {
       techUsed: payload.techUsed,
       link: payload.link,
     };
-    // console.log(projectData);
 
     const response = await fetch(
       `https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/buddyrequests.json`,

@@ -16,8 +16,9 @@
     :title="tag">
     </base-badge>
     <br>
-    
+    <transition name="details" mode="out-in">
     <p v-if="detailsIsVisible">{{ description }}</p>
+    </transition>
 
     
   </li>
@@ -67,4 +68,31 @@ p {
   justify-content: space-between;
   align-items: center;
 }
+
+.details-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+
+.details-leave-active,
+.details-enter-active {
+  transition: all 0.4s ease-out;
+}
+
+.details-enter-to,
+.details-leave-from {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.details-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+
+
+
+
 </style>
