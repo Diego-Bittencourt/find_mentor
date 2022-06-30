@@ -23,6 +23,7 @@
         <base-spinner></base-spinner>
       </div>
         <ul v-else-if="hasBuddies">
+          
           <buddy-item
             v-for="buddy in loadBuddiesRequests"
             :key="buddy.id"
@@ -33,6 +34,7 @@
             :tags="buddy.projectTags"
             :description="buddy.projectDescription"
           ></buddy-item>
+          
         </ul>
         
         <h3 v-else>
@@ -142,4 +144,6 @@ ul {
 h3 {
   text-align: center;
 }
+
+
 </style>

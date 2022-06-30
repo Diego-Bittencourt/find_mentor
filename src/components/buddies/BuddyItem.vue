@@ -1,4 +1,5 @@
 <template>
+
   <li>
     <div class="titlebanner">
     <a :href="gitlink" target="_blank"><h2>{{ title }}</h2></a>
@@ -22,6 +23,7 @@
 
     
   </li>
+  
 </template>
 
 <script>
@@ -88,10 +90,22 @@ p {
 
 .details-leave-to {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateX(40px);
 }
 
+.details-enter-from {
+  opacity: 0;
+  transform: translateX(-40px)
+}
 
+.details-enter-active {
+  transform: all 0.6s ease-in;
+}
+
+.details-enter-to {
+  opacity: 1;
+  transform: translateX(0px);
+}
 
 
 
