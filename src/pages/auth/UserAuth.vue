@@ -1,29 +1,105 @@
 <template>
-  <form>
+  <div>
+    <base-dialog :show="!!error" title="An error occurred" @close="handleError">
+      <p>{{ error }}</p>
+    </base-dialog>
+    <base-dialog :show="isLoading" title="Authenticating..." fixed>
+      <base-spinner></base-spinner>
+    </base-dialog>
     <base-card>
-    <div class="form-control">
-      <label for="email">E-mail</label>
-      <input type="email" id="email" />
-    </div>
-    <div class="form-control">
-      <label for="password">Password</label>
-      <input type="password" id="password" />
-    </div>
-    <base-button>Login</base-button>
-    <base-button type="button" mode="flat">Sign up</base-button>
+      <base-spinner v-if="isLoading"></base-spinner>
+      <form @submit.prevent="submitForm" v-else>
+        <div class="form-control">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" v-model.trim="email" />
+        </div>
+        <div class="form-control">
+          <label for="password">Password</label>
+          <input type="password" id="password" v-model.trim="password" />
+        </div>
+        <p v-if="!formIsValid">Please, enter a valid email and password</p>
+        <base-button>{{ submitButtonCaption }}</base-button>
+        <base-button type="button" mode="flat" @click="switchAuthMode">{{
+          switchModeButtonCaption
+        }}</base-button>
+      </form>
     </base-card>
-  </form>
+  </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+      formIsValid: true,
+      mode: 'login',
+      isLoading: false,
+      error: null,
+    };
+  },
+  computed: {
+    submitButtonCaption() {
+      if (this.mode === 'login') {
+        return 'Login';
+      } else {
+        return 'Sign up';
+      }
+    },
+    switchModeButtonCaption() {
+      if (this.mode === 'login') {
+        return 'Sign up';
+      } else {
+        return 'Login';
+      }
+    },
+  },
+  methods: {
+    handleError() {
+      this.error = null
+    },
+    async submitForm() {
+      this.formIsValid = true;
+      if (
+        this.email === '' ||
+        !this.email.includes('@') ||
+        this.password.length < 6
+      ) {
+        this.formIsValid = false;
+        return;
+      }
 
+      this.isLoading = true;
 
-
+      try {
+        if (this.mode === 'login') {
+          // if....
+        } else {
+          await this.$store.dispatch('signup', {
+            email: this.email,
+            password: this.password,
+          });
+        }
+      } catch (err) {
+        this.error = err.message || 'Failed to authenticate.';
+      }
+      this.isLoading = false;
+    },
+    switchAuthMode() {
+      if (this.mode === 'login') {
+        this.mode = 'signup';
+      } else {
+        this.mode = 'login';
+      }
+    },
+  },
+};
+</script>
 
 <style scoped>
 form {
   margin: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 12px;
   padding: 1rem;
 }
 
@@ -52,5 +128,4 @@ textarea:focus {
   background-color: #faf6ff;
   outline: none;
 }
-
 </style>
