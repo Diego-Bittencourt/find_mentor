@@ -30,7 +30,8 @@ export default {
   },
   async getRequests(context) {
     const mentorId = context.rootGetters.userId;
-    const response = await fetch(`https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${mentorId}.json`);
+    const token = context.rootGetters.token;
+    const response = await fetch(`https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${mentorId}.json?auth=${token}`);
     const responseData = await response.json();
 
     if (!response.ok) {

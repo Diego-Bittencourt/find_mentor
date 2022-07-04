@@ -9,8 +9,10 @@ export default {
       areas: payload.areas,
     };
 
+    const token = context.rootGetters.token;
+
     const response = await fetch(
-      `https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/mentors/${userId}.json`,
+      `https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/mentors/${userId}.json?auth=${token}`,
       {
         method: 'PUT',
         body: JSON.stringify(mentorData),
