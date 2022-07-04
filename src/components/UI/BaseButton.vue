@@ -70,4 +70,17 @@ button:active {
 .outline:active {
   background-color: #ffedd2;
 }
+
+.strong {
+  background-color: #70322a;
+  border-color: #f0f8ff;
+  border-radius: 5px;
+}
+
+.strong:hover,
+.strong:active {
+  border-color: #701105;
+  background-color: transparent;
+  border-radius: 5px;
+}
 </style>
