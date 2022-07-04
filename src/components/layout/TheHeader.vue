@@ -5,8 +5,8 @@
       <ul>
         <li><router-link to="/buddies">Code Buddies</router-link></li>
         <li><router-link to="/mentors">All Mentors</router-link></li>
-        <li><router-link to="/requests">Requests</router-link></li>
-        <li><router-link v-if="!isLoggedIn" to="/auth">Log in</router-link></li>
+        <li v-if="isLoggedIn"><router-link to="/requests">Requests</router-link></li>
+        <li v-else><router-link  to="/auth">Log in</router-link></li>
       </ul>
     </nav>
   </header>
