@@ -84,10 +84,12 @@ export default {
             password: this.password,
           });
         }
+        this.$router.replace('/buddies');
       } catch (err) {
         this.error = err.message || 'Failed to authenticate.';
       }
       this.isLoading = false;
+      
     },
     switchAuthMode() {
       if (this.mode === 'login') {

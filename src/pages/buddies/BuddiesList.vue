@@ -2,9 +2,10 @@
   <div>
     <section>
       <base-card>
-        <base-button @click="toggleBuddyForm"
+        <base-button v-if="isLoggedin" @click="toggleBuddyForm"
           >Create Code Buddy Request</base-button
         >
+        <h3 v-else>Please, login to create a Code Buddy Request.</h3>
         <buddy-registration v-if="isBuddyFormVisible" @register-buddy="buddyRegistered">
         </buddy-registration>
       </base-card>
@@ -101,6 +102,9 @@ export default {
     hasBuddies() {
       return !this.isLoading && this.$store.getters['buddies/hasBuddies'];
     },
+    isLoggedin() {
+      return this.$store.getters.isAuthenticated;
+    }
   },
   created() {
     this.loadBuddies();
