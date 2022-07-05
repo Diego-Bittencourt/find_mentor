@@ -9,6 +9,15 @@
     <base-card>
       <base-spinner v-if="isLoading"></base-spinner>
       <form @submit.prevent="submitForm" v-else>
+        <h3>mode:{{ mode }}</h3>
+        <h3>userNameValidation:{{ usernameValidation }}</h3>
+        <h3>username: {{ username }}</h3>
+        <h3>{{ submitButtonCaption }}</h3>
+        <!-- ADD ANIMATION FOR THE NAME FIELD -->
+        <div class="form-control" v-if="mode === 'signup'">
+          <label for="username">User Name</label>
+          <input type="text" id="username" v-model.trim="username" />
+        </div>
         <div class="form-control">
           <label for="email">E-mail</label>
           <input type="email" id="email" v-model.trim="email" />
@@ -17,7 +26,9 @@
           <label for="password">Password</label>
           <input type="password" id="password" v-model.trim="password" />
         </div>
-        <p v-if="!formIsValid">Please, enter a valid email and password</p>
+        <p v-if="!formIsValid">
+          Please, enter a valid user name, email and password
+        </p>
         <base-button>{{ submitButtonCaption }}</base-button>
         <base-button type="button" mode="flat" @click="switchAuthMode">{{
           switchModeButtonCaption
@@ -31,6 +42,7 @@
 export default {
   data() {
     return {
+      username: '',
       email: '',
       password: '',
       formIsValid: true,
@@ -40,6 +52,13 @@ export default {
     };
   },
   computed: {
+    usernameValidation() {
+      if (this.mode === 'signup' && this.username === '') {
+        return false;
+      } else {
+        return true;
+      }
+    },
     submitButtonCaption() {
       if (this.mode === 'login') {
         return 'Login';
@@ -57,11 +76,12 @@ export default {
   },
   methods: {
     handleError() {
-      this.error = null
+      this.error = null;
     },
     async submitForm() {
       this.formIsValid = true;
       if (
+        !this.usernameValidation ||
         this.email === '' ||
         !this.email.includes('@') ||
         this.password.length < 6
@@ -74,25 +94,25 @@ export default {
 
       try {
         if (this.mode === 'login') {
-         await this.$store.dispatch('login', {
+          await this.$store.dispatch('login', {
             email: this.email,
             password: this.password,
-          })
+          });
         } else {
           await this.$store.dispatch('signup', {
+            username: this.username,
             email: this.email,
             password: this.password,
           });
         }
-        const redirectUrl = '/' + (this.$route.query.redirect || 'mentors') //checking for the url prop called redirect.
-        
+        const redirectUrl = '/' + (this.$route.query.redirect || 'mentors'); //checking for the url prop called redirect.
+
         this.$router.replace(redirectUrl); //redirecting to a variable allows me to change the variable and, therefore,
-                                           // gives me flexibility to different redirections.
+        // gives me flexibility to different redirections.
       } catch (err) {
         this.error = err.message || 'Failed to authenticate.';
       }
       this.isLoading = false;
-      
     },
     switchAuthMode() {
       if (this.mode === 'login') {
@@ -112,7 +132,7 @@ form {
 }
 
 .form-control {
-  margin: 0.5rem 0;
+  margin: 1.5rem 0 0.5rem 0;
 }
 
 label {

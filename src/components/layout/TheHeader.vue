@@ -2,6 +2,7 @@
   <header>
     <nav>
       <h1><router-link to="/">Find a Mentor</router-link></h1>
+      <h3>Hello {{ userName }}</h3>
       <ul>
         <li><router-link to="/buddies">Code Buddies</router-link></li>
         <li><router-link to="/mentors">All Mentors</router-link></li>
@@ -20,6 +21,9 @@
 <script>
 export default {
   computed: {
+    userName() {
+      return this.$store.getters.getUserName;
+    },
     isLoggedIn() {
       return this.$store.getters.isAuthenticated;
     },
