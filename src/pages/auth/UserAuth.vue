@@ -84,7 +84,10 @@ export default {
             password: this.password,
           });
         }
-        this.$router.replace('/buddies');
+        const redirectUrl = '/' + (this.$route.query.redirect || 'mentors') //checking for the url prop called redirect.
+        
+        this.$router.replace(redirectUrl); //redirecting to a variable allows me to change the variable and, therefore,
+                                           // gives me flexibility to different redirections.
       } catch (err) {
         this.error = err.message || 'Failed to authenticate.';
       }
