@@ -9,14 +9,11 @@
     <base-card>
       <base-spinner v-if="isLoading"></base-spinner>
       <form @submit.prevent="submitForm" v-else>
-        <h3>mode:{{ mode }}</h3>
-        <h3>userNameValidation:{{ usernameValidation }}</h3>
-        <h3>username: {{ username }}</h3>
         <h3>{{ submitButtonCaption }}</h3>
         <!-- ADD ANIMATION FOR THE NAME FIELD -->
         <div class="form-control" v-if="mode === 'signup'">
           <label for="username">User Name</label>
-          <input type="text" id="username" v-model.trim="username" />
+          <input type="text" id="username" v-model.trim="userName" />
         </div>
         <div class="form-control">
           <label for="email">E-mail</label>
@@ -42,7 +39,7 @@
 export default {
   data() {
     return {
-      username: '',
+      userName: '',
       email: '',
       password: '',
       formIsValid: true,
@@ -53,7 +50,7 @@ export default {
   },
   computed: {
     usernameValidation() {
-      if (this.mode === 'signup' && this.username === '') {
+      if (this.mode === 'signup' && this.userName === '') {
         return false;
       } else {
         return true;
@@ -100,7 +97,7 @@ export default {
           });
         } else {
           await this.$store.dispatch('signup', {
-            username: this.username,
+            userName: this.userName,
             email: this.email,
             password: this.password,
           });

@@ -7,7 +7,7 @@ export default {
     state() {
         return {
           userId: null,
-          userName: '',
+          userName: 'Not working',
           token: null,
           tokenExpiration: null
         };
