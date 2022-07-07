@@ -1,6 +1,6 @@
 export default {
   async registerProject(context, payload) {
-    const userId = context.rootGetters.userId;
+    // const userId = context.rootGetters.userId;
     const projectData = {
       name: payload.name,
       title: payload.title,
@@ -22,11 +22,15 @@ export default {
     if (!response.ok) {
       // error handling
     }
+    context.dispatch('buddies/loadBuddies')
 
-    context.commit('registerProject', {
-      ...projectData,
-      id: userId,
-    });
+    //Instead of sending the data to the vuex, the action will trigger another action to load from 
+    //firebase. Avoid promise errors.
+    
+    // context.commit('registerProject', { 
+    //   ...projectData,
+    //   id: userId,
+    // });
   },
   async loadBuddies(context) {
     const response = await fetch(
