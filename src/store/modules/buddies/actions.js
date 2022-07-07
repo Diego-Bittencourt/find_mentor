@@ -9,8 +9,10 @@ export default {
       link: payload.link,
     };
 
+    const token = context.rootGetters.token;
+
     const response = await fetch(
-      `https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/buddyrequests.json`,
+      `https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/buddyrequests.json?auth=${token}`,
       {
         method: 'POST',
         body: JSON.stringify(projectData),

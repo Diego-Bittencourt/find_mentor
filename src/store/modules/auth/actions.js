@@ -25,6 +25,11 @@ export default {
       tokenExpiration: responseData.expiresIn,
     });
     
+    context.dispatch('fetchUserName', {
+      email: payload.email,
+      password: payload.password,
+    })
+
   },
   async signup(context, payload) {
     const response = await fetch(
@@ -67,7 +72,9 @@ export default {
     });
   },
   async fetchUserName(context, payload) {
-    const response = await fetch('https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/users');
+    const token = context.rootGetters.token;
+
+    const response = await fetch(`https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/users.json?auth=${token}`);
 
     const responseData = await response.json();
 
@@ -75,10 +82,10 @@ export default {
         const error = new Error(responseData.message || 'Failed to authenticate');
         throw error;
       }
-
+      console.log("o responseData", responseData)
       const currentUserEmail = payload.email;
 
-      const currentUser = responseData.users.filter((user) => user.email === currentUserEmail);
+      const currentUser = responseData.filter((user) => user.email === currentUserEmail);
 
       context.commit('setUserName', {
         userName: currentUser.userName
@@ -87,8 +94,6 @@ export default {
 
   }, //gets username from the server
   async postUserName(context, payload) {
-    console.log("action triggered");
-    console.log(payload);
     const token = context.rootGetters.token;
 
     const response = await fetch(`https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/users.json?auth=${token}`, {
@@ -104,10 +109,11 @@ export default {
         const error = new Error(responseData.message || 'Failed to authenticate');
         throw error;
       }
-
-      console.log(responseData.userName);
-      context.commit('setUserName', {
-        userName: responseData.userName
+      
+      
+      context.dispatch('fetchUserName', {
+        userName: payload.userName,
+        email: payload.email
       })
   } //sends the username and email to the server
 };

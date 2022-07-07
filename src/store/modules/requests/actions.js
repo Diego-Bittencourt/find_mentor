@@ -40,7 +40,6 @@ export default {
     }
 
     const requests = [];
-
     for (const key in responseData) {
         const request = {
             id: key,

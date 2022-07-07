@@ -23,6 +23,7 @@
       <div v-if="isLoading">
         <base-spinner></base-spinner>
       </div>
+      <!-- Add a carousel of mentor and maybe randomize it to a better UX -->
       <ul v-else-if="hasMentors">
         <mentor-item
           v-for="mentor in filteredMentors"
