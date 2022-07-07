@@ -83,12 +83,17 @@ export default {
         throw error;
       }
       console.log("o responseData", responseData)
-      const currentUserEmail = payload.email;
-
-      const currentUser = responseData.filter((user) => user.email === currentUserEmail);
-
+      
+      let currentUser;
+      
+      for (const key in responseData) {
+        if (responseData[key].email === payload.email) {
+          currentUser = responseData[key].username
+        }
+      }
+      console.log("currentUser: ", currentUser);
       context.commit('setUserName', {
-        userName: currentUser.userName
+        userName: currentUser
       })
     
 
