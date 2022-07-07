@@ -111,7 +111,8 @@ export default {
   },
   methods: {
     buddyRegistered() {
-      this.loadBuddies();
+      // this.loadBuddies();
+      // The code above is being on hold becuase the action is already calling the other action.
       this.isBuddyFormVisible = false;
     },
     async loadBuddies() {
