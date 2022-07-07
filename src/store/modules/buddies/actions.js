@@ -22,7 +22,7 @@ export default {
     if (!response.ok) {
       // error handling
     }
-    context.dispatch('buddies/loadBuddies')
+    context.dispatch('loadBuddies')
 
     //Instead of sending the data to the vuex, the action will trigger another action to load from 
     //firebase. Avoid promise errors.
