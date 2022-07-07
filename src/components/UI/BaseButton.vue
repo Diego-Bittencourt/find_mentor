@@ -42,6 +42,7 @@ a {
   border-radius: 30px;
   margin-right: 0.5rem;
   display: inline-block;
+  text-align: center;
 }
 
 a:hover,
@@ -83,4 +84,6 @@ button:active {
   background-color: transparent;
   border-radius: 5px;
 }
+
+
 </style>

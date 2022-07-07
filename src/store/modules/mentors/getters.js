@@ -10,7 +10,7 @@ export default {
     }
   },
   isMentor(state, getters, rootState, rootGetters) {
-    console.log(state, rootState); // printing arguments that I don't use but I need them to acces the last arg.
+    //console.log(state, rootState); // printing arguments that I don't use but I need them to acces the last arg.
     const mentors = getters.mentors;
     const userId = rootGetters.userId;
     return mentors.some(mentor => mentor.id === userId);

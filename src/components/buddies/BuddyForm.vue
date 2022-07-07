@@ -176,7 +176,7 @@ export default {
         description: this.description.val,
         techUsed: this.techUsed.val,
       };
-      console.log(formData);
+      // console.log(formData);
       this.$emit('save-project', formData);
     },
   },

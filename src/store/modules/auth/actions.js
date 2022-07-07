@@ -82,7 +82,6 @@ export default {
         const error = new Error(responseData.message || 'Failed to authenticate');
         throw error;
       }
-      console.log("o responseData", responseData)
       
       let currentUser;
       
@@ -91,7 +90,7 @@ export default {
           currentUser = responseData[key].username
         }
       }
-      console.log("currentUser: ", currentUser);
+      
       context.commit('setUserName', {
         userName: currentUser
       })
