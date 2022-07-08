@@ -1,7 +1,7 @@
 <template>
   <header>
     <nav>
-      <div v-if="isLoggedIn">
+      <div v-if="isLoggedIn" class="box-wrapper">
         <div class="box-area">
           <div class="box box-front">
             <h1>
@@ -110,7 +110,11 @@ export default {
   justify-content: center;
   align-content: center;
   padding-top: 5px;
-;}
+}
+
+.box-wrapper {
+  width: 230px;
+}
 
 @keyframes rotate {
   0% {
@@ -200,7 +204,6 @@ header nav {
 
 header ul {
   list-style: none;
-  margin-left: 300px;
   padding: 0;
   display: flex;
   justify-content: center;
