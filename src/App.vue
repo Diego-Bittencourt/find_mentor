@@ -16,6 +16,18 @@ export default {
   },
   created() {
     this.$store.dispatch('autoLogin');
+  },
+  computed: {
+    didAutoLogout() {
+      return this.$store.getters.didAutoLogout;
+    }
+  },
+  watch: {
+    didAutoLogout(curValue, oldValue) {
+      if (curValue && curValue !== oldValue) {
+        this.$router.replace('/mentors');
+      }
+    }
   }
 };
 </script>

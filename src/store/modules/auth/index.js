@@ -9,7 +9,7 @@ export default {
           userId: null,
           userName: 'Not working',
           token: null,
-          tokenExpiration: null
+          didAutoLogout: false
         };
       },
       mutations: authMutations,
