@@ -1,8 +1,28 @@
 <template>
   <header>
     <nav>
-      <h1><router-link to="/">Find a Mentor</router-link></h1>
-      
+      <div>
+        <div class="box-area">
+          <div class="box box-front">
+            <h1>
+              <router-link to="/">Hello, {{ userName }}</router-link>
+            </h1>
+          </div>
+          <div class="box box-bottom">
+            <h1><router-link to="/">Find a Mentor</router-link></h1>
+          </div>
+          <div class="box box-back">
+            <h1><router-link to="/buddies">Find a Code Buddy</router-link></h1>
+          </div>
+          <div class="box box-top">
+            <h1>
+              <router-link to="/auth?redirect=register"
+                >Become a Mentor</router-link
+              >
+            </h1>
+          </div>
+        </div>
+      </div>
       <ul>
         <li><router-link to="/buddies">Code Buddies</router-link></li>
         <li><router-link to="/mentors">All Mentors</router-link></li>
@@ -11,7 +31,6 @@
         </li>
         <li v-else><router-link to="/auth">Log in</router-link></li>
         <li v-if="isLoggedIn">
-          <h4>Hello, {{ userName }}</h4>
           <base-button @click="logout" mode="strong">Log out</base-button>
         </li>
       </ul>
@@ -39,9 +58,93 @@ export default {
 </script>
 
 <style scoped>
+.box-front {
+  transform: translateZ(30px);
+  background-color: #b84b03;
+}
+
+.box-back {
+  transform: translateZ(-30px) rotateX(180deg);
+  background-color: #b84b03;
+}
+
+.box-top {
+  transform: translateY(-30px) rotateX(90deg);
+  background-color: #b84b03;
+}
+
+.box-bottom {
+  transform: translateY(30px) rotateX(-90deg);
+  background-color: #b84b03;
+}
+
+
+.box-area {
+  position: relative;
+  transform-style: preserve-3d;
+  animation-name: rotate;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  width: 224px;
+  height: 64px;
+  transform: rotateY(90deg);
+}
+
+.box {
+  position: absolute;
+  width: 220px;
+  height: 60px;
+  margin: 0;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-top: 5px;
+;}
+
+@keyframes rotate {
+  0% {
+    transform: rotate3d(1, 0, 0, 0);
+  }
+
+  20% {
+    transform: rotate3d(1, 0, 0, 0);
+  }
+
+  25% {
+    transform: rotate3d(1, 0, 0, -90deg);
+  }
+
+  45% {
+    transform: rotate3d(1, 0, 0, -90deg);
+  }
+
+  50% {
+    transform: rotate3d(1, 0, 0, -180deg);
+  }
+
+  70% {
+    transform: rotate3d(1, 0, 0, -180deg);
+  }
+
+  75% {
+    transform: rotate3d(1, 0, 0, -270deg);
+  }
+
+  95% {
+    transform: rotate3d(1, 0, 0, -270deg);
+  }
+
+  100% {
+    transform: rotate3d(1, 0, 0, -360deg);
+  }
+} 
+
+
 header {
   width: 100%;
-  height: 5rem;
+  height: 5.5rem;
   background-color: #b84b03;
   display: flex;
   justify-content: center;
@@ -88,16 +191,15 @@ header nav {
 
 header ul {
   list-style: none;
-  margin: 0;
+  margin-left: 300px;
   padding: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  align-self: flex-end;
 }
 
 li {
   margin: 0 0.5rem;
 }
-
-
 </style>
