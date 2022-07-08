@@ -1,7 +1,7 @@
 <template>
   <header>
     <nav>
-      <div>
+      <div v-if="isLoggedIn">
         <div class="box-area">
           <div class="box box-front">
             <h1>
@@ -15,14 +15,20 @@
             <h1><router-link to="/buddies">Find a Code Buddy</router-link></h1>
           </div>
           <div class="box box-top">
-            <h1>
-              <router-link to="/auth?redirect=register"
+            <h1 v-if="!isMentor">
+              <router-link to="/register"
                 >Become a Mentor</router-link
+              >
+            </h1>
+            <h1 v-else>
+              <router-link to="/requests"
+                >Check Requests</router-link
               >
             </h1>
           </div>
         </div>
       </div>
+      <h1 v-else><router-link to="/">Find a Mentor</router-link></h1>
       <ul>
         <li><router-link to="/buddies">Code Buddies</router-link></li>
         <li><router-link to="/mentors">All Mentors</router-link></li>
@@ -47,6 +53,9 @@ export default {
     isLoggedIn() {
       return this.$store.getters.isAuthenticated;
     },
+    isMentor() {
+      return this.$store.getters['mentors/isMentor'];
+    }
   },
   methods: {
     logout() {
