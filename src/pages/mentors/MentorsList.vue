@@ -25,6 +25,7 @@
       </div>
       <!-- Add a carousel of mentor and maybe randomize it to a better UX -->
       <ul v-else-if="hasMentors">
+        <transition-group name="mentor-list" tag="ul">
         <mentor-item
           v-for="mentor in filteredMentors"
           :key="mentor.id"
@@ -34,6 +35,7 @@
           :rate="mentor.hourlyRate"
           :areas="mentor.areas"
         ></mentor-item>
+        </transition-group>
       </ul>
       <h3 v-else>No Mentors Found.</h3>
     </base-card>
@@ -120,5 +122,20 @@ ul {
 .controls {
   display: flex;
   justify-content: space-between;
+}
+
+.mentor-list-move,
+.mentor-list-enter-active,
+.mentor-list-leave-active {
+  transition: all 0.5s ease;
+}
+.mentor-list-enter-from,
+.mentor-list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.mentor-list-leave-active {
+  position: absolute;
 }
 </style>

@@ -28,6 +28,7 @@
           <base-spinner></base-spinner>
         </div>
         <ul v-else-if="hasBuddies">
+          <transition-group name="buddy-list" tag="ul">
           <buddy-item
             v-for="buddy in loadBuddiesRequests"
             :key="buddy.id"
@@ -38,6 +39,7 @@
             :tags="buddy.projectTags"
             :description="buddy.projectDescription"
           ></buddy-item>
+          </transition-group>
         </ul>
 
         <h3 v-else>There are no Code Buddies requests. Try creating one.</h3>
@@ -182,5 +184,20 @@ h3 {
 
 .buddy-form-leave-active {
 transition: all 0.7s ease-in;
+}
+
+.buddy-list-move,
+.buddy-list-enter-active,
+.buddy-list-leave-active {
+  transition: all 0.5s ease;
+}
+.buddy-list-enter-from,
+.buddy-list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.buddy-list-leave-active {
+  position: absolute;
 }
 </style>
