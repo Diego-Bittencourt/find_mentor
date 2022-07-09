@@ -3,28 +3,31 @@
     <section>
       <base-card>
         <base-button v-if="isLoggedin" @click="toggleBuddyForm"
-          >Create Code Buddy Request</base-button
-        >
+          >Create Code Buddy Request</base-button>
+
         <h3 v-else>Please, login to create a Code Buddy Request.</h3>
-        <buddy-registration v-if="isBuddyFormVisible" @register-buddy="buddyRegistered">
-        </buddy-registration>
+        <transition name="buddy-form" mode="out-in">
+          <buddy-registration
+            v-if="isBuddyFormVisible"
+            @register-buddy="buddyRegistered"
+          >
+          </buddy-registration>
+        </transition>
       </base-card>
     </section>
-    
+
     <section>
       <buddy-filter @change-filter="setFilters"></buddy-filter>
     </section>
     <base-card>
       <section>
         <section>
-      <base-button @click="loadBuddies">Refresh list</base-button>
-      
-    </section>
+          <base-button @click="loadBuddies">Refresh list</base-button>
+        </section>
         <div v-if="isLoading">
-        <base-spinner></base-spinner>
-      </div>
+          <base-spinner></base-spinner>
+        </div>
         <ul v-else-if="hasBuddies">
-          
           <buddy-item
             v-for="buddy in loadBuddiesRequests"
             :key="buddy.id"
@@ -35,12 +38,9 @@
             :tags="buddy.projectTags"
             :description="buddy.projectDescription"
           ></buddy-item>
-          
         </ul>
-        
-        <h3 v-else>
-          There are no Code Buddies requests. Try creating one.
-        </h3>
+
+        <h3 v-else>There are no Code Buddies requests. Try creating one.</h3>
       </section>
     </base-card>
   </div>
@@ -55,7 +55,7 @@ export default {
   components: {
     BuddyItem,
     BuddyFilter,
-    BuddyRegistration
+    BuddyRegistration,
   },
   data() {
     return {
@@ -68,7 +68,7 @@ export default {
         javascript: true,
       },
       isBuddyFormVisible: false,
-      isLoading: false
+      isLoading: false,
     };
   },
   computed: {
@@ -90,10 +90,16 @@ export default {
         if (this.activeFilters.PHP && buddy.projectTags.includes('PHP')) {
           return true;
         }
-        if (this.activeFilters.tailwind && buddy.projectTags.includes('tailwind')) {
+        if (
+          this.activeFilters.tailwind &&
+          buddy.projectTags.includes('tailwind')
+        ) {
           return true;
         }
-        if (this.activeFilters.javascript && buddy.projectTags.includes('javascript')) {
+        if (
+          this.activeFilters.javascript &&
+          buddy.projectTags.includes('javascript')
+        ) {
           return true;
         }
         return false;
@@ -104,7 +110,7 @@ export default {
     },
     isLoggedin() {
       return this.$store.getters.isAuthenticated;
-    }
+    },
   },
   created() {
     this.loadBuddies();
@@ -150,5 +156,31 @@ h3 {
   text-align: center;
 }
 
+.buddy-form-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
 
+.buddy-form-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.buddy-form-enter-active {
+  transition: all 0.7s ease-out;
+}
+
+.buddy-form-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.buddy-form-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.buddy-form-leave-active {
+transition: all 0.7s ease-in;
+}
 </style>

@@ -10,11 +10,12 @@
       <base-spinner v-if="isLoading"></base-spinner>
       <form @submit.prevent="submitForm" v-else>
         <h3>{{ submitButtonCaption }}</h3>
-        <!-- ADD ANIMATION FOR THE NAME FIELD -->
+        <transition name="name-field" mode="out-in">
         <div class="form-control" v-if="mode === 'signup'">
           <label for="username">User Name</label>
           <input type="text" id="username" v-model.trim="userName" />
         </div>
+        </transition>
         <div class="form-control">
           <label for="email">E-mail</label>
           <input type="email" id="email" v-model.trim="email" />
@@ -153,4 +154,30 @@ textarea:focus {
   background-color: #faf6ff;
   outline: none;
 }
+
+.name-field-enter-from {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+
+.name-field-enter-active {
+  transition: all 0.4s ease-out;
+}
+
+.name-field-enter-to,
+.name-field-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.name-field-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.name-field-leave-active {
+  transition: all 0.4s ease-in;
+}
+
 </style>
