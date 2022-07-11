@@ -189,15 +189,20 @@ transition: all 0.7s ease-in;
 .buddy-list-move,
 .buddy-list-enter-active,
 .buddy-list-leave-active {
-  transition: all 0.5s ease;
+  transition: all 0.5s ease-in-out;
 }
-.buddy-list-enter-from,
+.buddy-list-enter-from {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
 .buddy-list-leave-to {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateX(50px)
 }
 
 .buddy-list-leave-active {
   position: absolute;
+  transform: 1s;
 }
 </style>

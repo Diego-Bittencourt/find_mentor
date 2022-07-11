@@ -25,7 +25,7 @@
       </div>
       <!-- Add a carousel of mentor and maybe randomize it to a better UX -->
       <ul v-else-if="hasMentors">
-        <transition-group name="mentor-list" tag="ul">
+        <transition-group name="list" tag="ul">
         <mentor-item
           v-for="mentor in filteredMentors"
           :key="mentor.id"
@@ -124,18 +124,17 @@ ul {
   justify-content: space-between;
 }
 
-.mentor-list-move,
-.mentor-list-enter-active,
-.mentor-list-leave-active {
-  transition: all 0.5s ease;
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s ease;
 }
-.mentor-list-enter-from,
-.mentor-list-leave-to {
+.list-enter-from {
   opacity: 0;
-  transform: translateX(30px);
-}
+  transform: translateX(-50px);
+} 
 
-.mentor-list-leave-active {
-  position: absolute;
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(50px);
 }
 </style>
