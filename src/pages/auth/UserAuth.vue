@@ -10,7 +10,7 @@
       <base-spinner v-if="isLoading"></base-spinner>
       <form @submit.prevent="submitForm" v-else>
         <div class="modetitle">
-        <transition name="mode-title">
+        <transition name="mode-title" mode="out-in">
         <h3 v-if="mode === 'login'">{{ submitButtonCaption }}</h3>
         <h3 v-else>{{ submitButtonCaption }}</h3>
         </transition>
@@ -162,7 +162,7 @@ textarea:focus {
 
 .name-field-enter-from {
   opacity: 0;
-  transform: translateX(-20px);
+  transform: translateY(-20px);
 }
 
 
@@ -178,7 +178,6 @@ textarea:focus {
 
 .name-field-leave-to {
   opacity: 0;
-  transform: translateX(30px);
 }
 
 .name-field-leave-active {
@@ -188,16 +187,15 @@ textarea:focus {
 
 .mode-title-enter-from {
   opacity: 0;
-  transform: translateX(60px);
+  transform: translateY(-20px);
 }
 
 .mode-title-enter-active {
-  transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in;
 }
 
 .mode-title-leave-to {
   opacity: 0;
-  transform: translateX(-60px);
 }
 
 .mode-title-leave-active {
