@@ -88,7 +88,7 @@ export default {
         userId: userId,
       });
 
-      context.commit('setuserName', {
+      context.commit('setUserName', {
         userName: userName
       })
     }

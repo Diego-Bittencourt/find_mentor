@@ -214,4 +214,44 @@ header ul {
 li {
   margin: 0 0.5rem;
 }
+
+@media screen and (max-width: 750px) {
+  header {
+    font-size: 12px;
+    
+  }
+
+  li {
+    margin: 0 0.3rem;
+    padding: 0;
+  }
+
+  ul {
+    flex-wrap: wrap;
+    width: 90%;
+  }
+
+  a:active,
+  a:hover,
+  a.router-link-active {
+    border-color: transparent;
+}
+
+.box-wrapper {
+  display: none;
+}
+
+
+}
+
+@media screen and (max-width: 480px) {
+  header a {
+  padding: 0.3rem 0.7rem;
+}
+
+button {
+  height: 30%; 
+}
+
+}
 </style>
