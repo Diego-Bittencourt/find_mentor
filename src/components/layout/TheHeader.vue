@@ -216,6 +216,10 @@ li {
     font-size: 12px;
   }
 
+  header a {
+    padding: 0.3rem 0.7rem;
+  }
+
   li {
     margin: 0 0.3rem;
     padding: 0;
@@ -235,23 +239,6 @@ li {
   .box-wrapper {
     display: none;
   }
-}
-
-@media screen and (max-width: 480px) {
-  header {
-    height: 4rem;
-  }
-  header a {
-    padding: 0.3rem 0.7rem;
-  }
-
-  button {
-    height: 30%;
-  }
-
-  #topmentor {
-    display: none;
-  }
 
   nav {
     width: 100%;
@@ -260,6 +247,20 @@ li {
   ul {
     width: 100%;
     justify-content: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  header {
+    height: 4rem;
+  }
+
+  button {
+    height: 30%;
+  }
+
+  #topmentor {
+    display: none;
   }
 }
 </style>

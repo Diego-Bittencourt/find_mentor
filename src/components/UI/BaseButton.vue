@@ -11,9 +11,9 @@
 export default {
   props: {
     mode: {
-        type: String,
-        required: false,
-        default: null
+      type: String,
+      required: false,
+      default: null,
     },
     link: {
       type: Boolean,
@@ -21,10 +21,10 @@ export default {
       default: false,
     },
     to: {
-        type: String,
-        required: false,
-        default: '/'
-    }
+      type: String,
+      required: false,
+      default: '/',
+    },
   },
 };
 </script>
@@ -89,6 +89,7 @@ button:active {
   .strong {
     background-color: transparent;
     border-color: transparent;
+    padding: 0.3rem 0.3rem;
   }
 }
 
@@ -96,10 +97,6 @@ button:active {
   button,
   a {
     font-size: 0.8rem;
-    padding: 0.3rem 0.3rem;
   }
-
-  
 }
-
 </style>
