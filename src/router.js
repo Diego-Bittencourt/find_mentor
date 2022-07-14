@@ -1,22 +1,23 @@
-import { defineAsyncComponent } from 'vue';
+// import { defineAsyncComponent } from 'vue';
 
 import { createRouter, createWebHistory } from 'vue-router';
 
 
-// import MentorDetail from './pages/mentors/MentorDetail.vue';
-// import MentorRegistration from './pages/mentors/MentorRegistration.vue';
-// import ContactMentor from './pages/requests/ContactMentor.vue';
-// import UserAuth from './pages/auth/UserAuth.vue';
+import MentorDetail from './pages/mentors/MentorDetail.vue';
+import MentorRegistration from './pages/mentors/MentorRegistration.vue';
+import ContactMentor from './pages/requests/ContactMentor.vue';
+import UserAuth from './pages/auth/UserAuth.vue';
 import MentorsList from './pages/mentors/MentorsList.vue';
 import BuddiesList from './pages/buddies/BuddiesList.vue';
 import RequestReceived from './pages/requests/RequestReceived.vue';
 import NotFound from './pages/NotFound.vue';
 import store from './store/index.js';
 
-const MentorDetail = defineAsyncComponent(() => import('./pages/mentors/MentorDetail.vue'));
-const MentorRegistration = defineAsyncComponent(() => import('./pages/mentors/MentorRegistration.vue'));
-const ContactMentor = defineAsyncComponent(() => import('./pages/requests/ContactMentor.vue'));
-const UserAuth = defineAsyncComponent(() => import('./pages/auth/UserAuth.vue'));
+// const MentorDetail = defineAsyncComponent(() => import('./pages/mentors/MentorDetail.vue'));
+// const MentorRegistration = defineAsyncComponent(() => import('./pages/mentors/MentorRegistration.vue'));
+// const ContactMentor = defineAsyncComponent(() => import('./pages/requests/ContactMentor.vue'));
+// const UserAuth = defineAsyncComponent(() => import('./pages/auth/UserAuth.vue'));
+//Using Async components on router is a bad practice, so undoing it.
 
 const router = createRouter({
   history: createWebHistory(),

@@ -85,5 +85,21 @@ button:active {
   border-radius: 5px;
 }
 
+@media screen and (max-width: 750px) {
+  .strong {
+    background-color: transparent;
+    border-color: transparent;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  button,
+  a {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.3rem;
+  }
+
+  
+}
 
 </style>

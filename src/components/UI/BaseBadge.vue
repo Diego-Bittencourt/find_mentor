@@ -24,6 +24,7 @@ export default {
   padding: 0.5rem 1.5rem;
   display: inline-block;
   margin-right: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .frontend {
@@ -69,5 +70,11 @@ export default {
 .tailwind {
   background-color: rgb(177, 175, 175);
   color: #252525;
+}
+
+@media screen and (max-width: 480px) {
+  span {
+    font-size: 0.8rem;
+  }
 }
 </style>

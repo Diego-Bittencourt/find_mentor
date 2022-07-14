@@ -16,19 +16,17 @@
           </div>
           <div class="box box-top">
             <h1 v-if="!isMentor">
-              <router-link to="/register"
-                >Become a Mentor</router-link
-              >
+              <router-link to="/register">Become a Mentor</router-link>
             </h1>
             <h1 v-else>
-              <router-link to="/requests"
-                >Check Requests</router-link
-              >
+              <router-link to="/requests">Check Requests</router-link>
             </h1>
           </div>
         </div>
       </div>
-      <h1 v-else><router-link to="/">Find a Mentor</router-link></h1>
+      <h1 v-else>
+        <router-link to="/" id="topmentor">Find a Mentor</router-link>
+      </h1>
       <ul>
         <li><router-link to="/buddies">Code Buddies</router-link></li>
         <li><router-link to="/mentors">All Mentors</router-link></li>
@@ -55,7 +53,7 @@ export default {
     },
     isMentor() {
       return this.$store.getters['mentors/isMentor'];
-    }
+    },
   },
   methods: {
     logout() {
@@ -86,7 +84,6 @@ export default {
   transform: translateY(30px) rotateX(-90deg);
   background-color: #b84b03;
 }
-
 
 .box-area {
   position: relative;
@@ -152,8 +149,7 @@ export default {
   100% {
     transform: rotate3d(1, 0, 0, -360deg);
   }
-} 
-
+}
 
 header {
   width: 100%;
@@ -218,7 +214,6 @@ li {
 @media screen and (max-width: 750px) {
   header {
     font-size: 12px;
-    
   }
 
   li {
@@ -235,23 +230,36 @@ li {
   a:hover,
   a.router-link-active {
     border-color: transparent;
-}
+  }
 
-.box-wrapper {
-  display: none;
-}
-
-
+  .box-wrapper {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 480px) {
+  header {
+    height: 4rem;
+  }
   header a {
-  padding: 0.3rem 0.7rem;
-}
+    padding: 0.3rem 0.7rem;
+  }
 
-button {
-  height: 30%; 
-}
+  button {
+    height: 30%;
+  }
 
+  #topmentor {
+    display: none;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  ul {
+    width: 100%;
+    justify-content: center;
+  }
 }
 </style>

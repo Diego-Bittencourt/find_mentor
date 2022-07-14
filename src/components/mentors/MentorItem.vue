@@ -61,5 +61,6 @@ div {
 .actions {
   display: flex;
   justify-content: flex-end;
+  margin: 1rem 0;
 }
 </style>
