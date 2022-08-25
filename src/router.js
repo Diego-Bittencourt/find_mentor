@@ -11,6 +11,7 @@ import MentorsList from './pages/mentors/MentorsList.vue';
 import BuddiesList from './pages/buddies/BuddiesList.vue';
 import RequestReceived from './pages/requests/RequestReceived.vue';
 import NotFound from './pages/NotFound.vue';
+import LandPainel from './pages/LandPainel.vue';
 import store from './store/index.js';
 
 // const MentorDetail = defineAsyncComponent(() => import('./pages/mentors/MentorDetail.vue'));
@@ -22,7 +23,7 @@ import store from './store/index.js';
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', redirect: '/mentors' }, //initial page, redirect to the mentors list
+    { path: '/', component: LandPainel }, //initial page, redirect to the mentors list
     { path: '/buddies', component: BuddiesList },
     { path: '/mentors', component: MentorsList },
     {

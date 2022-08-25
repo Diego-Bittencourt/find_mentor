@@ -22,13 +22,5 @@ pnpm-debug.log*
 *.sw?
 
 
-# Personal files
 
-.browserslistrc
-.eslintrc.js
-.prettierrc
-babel.config.js
-HOW-TO-USE.pdf
-package-lock.json
-package.json
-public/
+
