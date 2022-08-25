@@ -9,7 +9,7 @@
             </h1>
           </div>
           <div class="box box-bottom">
-            <h1><router-link to="/">Find a Mentor</router-link></h1>
+            <h1><router-link to="/mentors">Find a Mentor</router-link></h1>
           </div>
           <div class="box box-back">
             <h1><router-link to="/buddies">Find a Code Buddy</router-link></h1>
@@ -251,8 +251,8 @@ li {
 }
 
 @media screen and (max-width: 480px) {
-  header {
-    height: 4rem;
+  header ul {
+    justify-content: space-between; 
   }
 
   button {
