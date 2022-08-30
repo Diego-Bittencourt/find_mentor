@@ -14,7 +14,7 @@
     </p>
     <p>
       If you find any bugs or have any suggestions, feel free to get in touch
-      with me.
+      with me on <a href="https://www.linkedin.com/in/diego-bittencourt-mendes-5b3898a8/">LinkedIn</a>.
     </p>
   </base-card>
 </template>
@@ -22,5 +22,18 @@
 <style scoped>
 p {
     text-align: justify;
+    line-height: 1.6rem;
+}
+
+a {
+  text-decoration: none;
+  color: orangered;
+  transition: all 0.3s ease-in;
+  border-radius: 10px;
+  padding: 3px;
+}
+
+a:hover {
+  background-color: #ccc;
 }
 </style>
