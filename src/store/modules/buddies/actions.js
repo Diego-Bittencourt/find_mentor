@@ -12,7 +12,7 @@ export default {
     const token = context.rootGetters.token;
 
     const response = await fetch(
-      `https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/buddyrequests.json?auth=${token}`,
+      `https://codebuddy-9e0d9-default-rtdb.asia-southeast1.firebasedatabase.app/buddyrequests.json?auth=${token}`,
       {
         method: 'POST',
         body: JSON.stringify(projectData),
@@ -34,7 +34,7 @@ export default {
   },
   async loadBuddies(context) {
     const response = await fetch(
-      `https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/buddyrequests.json`
+      `https://codebuddy-9e0d9-default-rtdb.asia-southeast1.firebasedatabase.app/buddyrequests.json`
     );
 
     const responseData = await response.json();

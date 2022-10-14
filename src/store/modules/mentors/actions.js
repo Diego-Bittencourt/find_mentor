@@ -12,7 +12,7 @@ export default {
     const token = context.rootGetters.token;
 
     const response = await fetch(
-      `https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/mentors/${userId}.json?auth=${token}`,
+      `https://codebuddy-9e0d9-default-rtdb.asia-southeast1.firebasedatabase.app/mentors/${userId}.json?auth=${token}`,
       {
         method: 'PUT',
         body: JSON.stringify(mentorData),
@@ -37,7 +37,7 @@ export default {
     }
 
     const response = await fetch(
-      `https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/mentors.json`
+      `https://codebuddy-9e0d9-default-rtdb.asia-southeast1.firebasedatabase.app/mentors.json`
     );
     const responseData = await response.json();
 

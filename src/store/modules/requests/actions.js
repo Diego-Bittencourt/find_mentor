@@ -6,7 +6,7 @@ export default {
       message: payload.message,
     };
     const response = await fetch(
-      `https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${payload.mentorId}.json`,
+      `https://codebuddy-9e0d9-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${payload.mentorId}.json`,
       {
         method: 'POST',
         body: JSON.stringify(newRequest),
@@ -31,7 +31,7 @@ export default {
   async getRequests(context) {
     const mentorId = context.rootGetters.userId;
     const token = context.rootGetters.token;
-    const response = await fetch(`https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${mentorId}.json?auth=${token}`);
+    const response = await fetch(`https://codebuddy-9e0d9-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${mentorId}.json?auth=${token}`);
     const responseData = await response.json();
 
     if (!response.ok) {

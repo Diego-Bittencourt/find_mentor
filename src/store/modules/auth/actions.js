@@ -17,11 +17,11 @@ export default {
   async auth(context, payload) {
     const mode = payload.mode;
     let url =
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBekgAGk8YKsN-foMAdP7V1CgTkQrc6dH4';
+      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBISqzA5QSBbaAyxvIxxfuVzlHi5jPkAyg';
 
     if (mode === 'signup') {
       url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBekgAGk8YKsN-foMAdP7V1CgTkQrc6dH4';
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBISqzA5QSBbaAyxvIxxfuVzlHi5jPkAyg';
     }
     const response = await fetch(url, {
       method: 'POST',
@@ -114,7 +114,7 @@ export default {
     const token = context.rootGetters.token;
 
     const response = await fetch(
-      `https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/users.json?auth=${token}`
+      `https://codebuddy-9e0d9-default-rtdb.asia-southeast1.firebasedatabase.app/users.json?auth=${token}`
     );
 
     const responseData = await response.json();
@@ -142,7 +142,7 @@ export default {
     const token = context.rootGetters.token;
 
     const response = await fetch(
-      `https://mentors-fcf7f-default-rtdb.asia-southeast1.firebasedatabase.app/users.json?auth=${token}`,
+      `https://codebuddy-9e0d9-default-rtdb.asia-southeast1.firebasedatabase.app/users.json?auth=${token}`,
       {
         method: 'POST',
         body: JSON.stringify({
